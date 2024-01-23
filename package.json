@@ -34,6 +34,7 @@
     "url": "https://github.com/openedx/frontend-template-application/issues"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@edx/brand": "npm:@openedx/brand-openedx@^1.2.2",
     "@edx/frontend-component-footer": "12.7.1",
     "@edx/frontend-component-header": "4.11.1",
@@ -44,6 +45,7 @@
     "@fortawesome/free-regular-svg-icons": "5.15.4",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@fortawesome/react-fontawesome": "0.2.0",
+    "antd": "^5.13.2",
     "core-js": "3.33.3",
     "prop-types": "15.8.1",
     "react": "17.0.2",
