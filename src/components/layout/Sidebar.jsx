@@ -1,14 +1,19 @@
 import React from 'react';
 import { Layout, Menu, Flex } from 'antd';
 const { Sider } = Layout;
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-	(icon, index) => ({
-		key: String(index + 1),
-		icon: React.createElement(icon),
-		label: `nav ${index + 1}`,
-	})
-);
+import {
+	UploadOutlined,
+	UserOutlined,
+	VideoCameraOutlined,
+	SnippetsOutlined,
+} from '@ant-design/icons';
+const items = [
+	{
+		key: '1',
+		icon: <SnippetsOutlined />,
+		label: 'Courses',
+	},
+];
 
 export default function Sidebar() {
 	return (

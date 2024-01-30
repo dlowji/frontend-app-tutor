@@ -1,4 +1,4 @@
-export const getEditableTableData = (pagination) => {
+export const getAllAccounts = (pagination) => {
 	return new Promise((res) => {
 		setTimeout(() => {
 			res({
