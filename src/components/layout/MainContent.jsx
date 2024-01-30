@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import api from '../../api/resource.api';
 import {
 	fetchAuthenticatedUser,
+	getAuthenticatedHttpClient,
 	getAuthenticatedUser,
 	hydrateAuthenticatedUser,
 } from '@edx/frontend-platform/auth';
@@ -30,6 +31,7 @@ export default function MainContent() {
 			setTableData((tableData) => ({ ...tableData, loading: true }));
 			if (auth?.accessToken) {
 				const response = await api.get('/courses/v1/courses/');
+				console.log('🚀 ~ api:', api);
 				const data = response.data;
 				console.log('🚀 ~ data:', data);
 				if (Array.isArray(data?.results)) {
@@ -53,6 +55,8 @@ export default function MainContent() {
 						});
 					}
 				}
+			} else {
+				setTableData((tableData) => ({ ...tableData, loading: false }));
 			}
 		},
 		[isMounted, auth?.accessToken]
@@ -64,11 +68,15 @@ export default function MainContent() {
 
 	useEffect(() => {
 		(async () => {
-			await hydrateAuthenticatedUser();
 			const user1 = getAuthenticatedUser();
 			console.log('🚀 ~ useEffect ~ user1:', user1);
 			const user2 = await fetchAuthenticatedUser();
 			console.log('🚀 ~ useEffect ~ user2:', user2);
+			const response = await getAuthenticatedHttpClient().get(
+				`http://local.edly.io/api/courses/v1/courses`
+			);
+			console.log('🚀 ~ data2:', response);
+			console.log(getAuthenticatedHttpClient());
 		})();
 	}, []);
 
