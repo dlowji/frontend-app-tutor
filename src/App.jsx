@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { storeAccessToken, storeRefreshToken } from './store/slices/authSlice';
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
+import MainContent from './components/layout/MainContent';
+import SendEmailPage from './pages/SendEmailPage';
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -18,7 +20,12 @@ const App = () => {
 	});
 	return (
 		<Routes>
-			<Route path="/" element={<MainLayout />}></Route>
+			<Route element={<MainLayout />}>
+				<Route path="/" element={<MainContent />}></Route>
+				<Route path="/send-email">
+					<Route path=":id" element={<SendEmailPage />} />
+				</Route>
+			</Route>
 			<Route path="login" element={<Login />}></Route>
 		</Routes>
 	);

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Sidebar from './Sidebar';
-import { Layout, theme } from 'antd';
+import { Layout, theme, Button } from 'antd';
 const { Content } = Layout;
 import { IntlProvider } from '@edx/frontend-platform/i18n';
 import { StudioHeader as Header } from '@edx/frontend-component-header';
 import Footer from '@edx/frontend-component-footer';
+import { Outlet } from 'react-router-dom';
 import messages from '../../i18n/index';
-import MainContent from './MainContent';
 import { useSelector } from 'react-redux';
 import {
 	fetchAuthenticatedUser,
@@ -56,7 +56,7 @@ export default function MainLayout() {
 							borderRadius: borderRadiusLG,
 						}}
 					>
-						<MainContent />
+						<Outlet />
 					</div>
 				</Content>
 				<Footer intl={messages[1]}>
