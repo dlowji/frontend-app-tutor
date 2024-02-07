@@ -48,7 +48,12 @@ class AuthService {
     formData.append("username", "annnaan1234");
     formData.append("password", "cuibap");
     formData.append("token_type", "jwt");
-    const data = await instance.post(`/oauth2/access_token`, formData, {});
+    fetch("http://local.edly.io/oauth2/access_token", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
     console.log("🚀 ~ AuthService ~ getTokens ~ data:", data);
 
     const { access_token, refresh_token, expires_in } = data.data;
