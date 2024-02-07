@@ -1,14 +1,14 @@
-import axios from 'axios';
-import { BASE_URL } from '../utils/constants';
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
 
 const instance = axios.create({
-	baseURL: BASE_URL,
-	timeout: 1000,
-	headers: {},
+  baseURL: BASE_URL,
+  timeout: 1000,
+  headers: {},
 });
 
 instance.interceptors.request.use(function (config) {
-	return config;
+  return config;
 });
 
 // instance.interceptors.response.use(
@@ -41,20 +41,18 @@ instance.interceptors.request.use(function (config) {
 // );
 
 class AuthService {
-	async getTokens() {
-		const formData = new FormData();
-		formData.append('client_id', 'login-service-client-id');
-		formData.append('grant_type', 'password');
-		formData.append('username', 's1mpleow');
-		formData.append('password', 'ka260102');
-		formData.append('token_type', 'jwt');
-		const data = await instance.post(`/oauth2/access_token`, formData, {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-			},
-		});
-		const { access_token, refresh_token, expires_in } = data.data;
-		return { access_token, refresh_token, expires_in };
-	}
+  async getTokens() {
+    const formData = new FormData();
+    formData.append("client_id", "login-service-client-id");
+    formData.append("grant_type", "password");
+    formData.append("username", "annnaan1234");
+    formData.append("password", "cuibap");
+    formData.append("token_type", "jwt");
+    const data = await instance.post(`/oauth2/access_token`, formData, {});
+    console.log("🚀 ~ AuthService ~ getTokens ~ data:", data);
+
+    const { access_token, refresh_token, expires_in } = data.data;
+    return { access_token, refresh_token, expires_in };
+  }
 }
 export default AuthService;
