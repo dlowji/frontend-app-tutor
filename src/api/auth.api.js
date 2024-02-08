@@ -56,7 +56,7 @@ class AuthService {
       .then((data) => console.log(data));
     console.log("🚀 ~ AuthService ~ getTokens ~ data:", data);
 
-    const { access_token, refresh_token, expires_in } = data.data;
+    const { access_token, refresh_token, expires_in } = data;
     return { access_token, refresh_token, expires_in };
   }
 }
