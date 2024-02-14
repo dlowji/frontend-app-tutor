@@ -10,16 +10,14 @@ import SendEmailPage from "./pages/SendEmailPage";
 
 const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    (async () => {
-      const authService = new AuthService();
-      const tokenData = await authService.getTokens();
-      console.log(tokenData);
-      if (!tokenData) return;
-      const { access_token, refresh_token } = tokenData;
-      dispatch(storeAccessToken(access_token));
-      dispatch(storeRefreshToken(refresh_token));
-    })();
+  useEffect(async () => {
+    const authService = new AuthService();
+    const tokenData = await authService.getTokens();
+    console.log(tokenData);
+    if (!tokenData) return;
+    const { access_token, refresh_token } = tokenData;
+    dispatch(storeAccessToken(access_token));
+    dispatch(storeRefreshToken(refresh_token));
   });
   return (
     <Routes>
