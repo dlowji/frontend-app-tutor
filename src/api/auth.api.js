@@ -45,8 +45,8 @@ class AuthService {
     const formData = new FormData();
     formData.append("client_id", "login-service-client-id");
     formData.append("grant_type", "password");
-    formData.append("username", "annnaan1234");
-    formData.append("password", "cuibap");
+    formData.append("username", "admin");
+    formData.append("password", "admin");
     formData.append("token_type", "jwt");
     fetch("http://local.edly.io/oauth2/access_token", {
       method: "POST",
