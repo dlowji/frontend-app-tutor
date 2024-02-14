@@ -112,7 +112,7 @@ export default function MainContent() {
   // 		if (index > -1) {
   // 			const item = newData[index];
   // 			newData.splice(index, 1, {
-  console.log("🚀 ~ useEffect ~ response:", response);
+//   console.log("🚀 ~ useEffect ~ response:", response);
   // 				...item,
   // 				...row,
   // 			});
