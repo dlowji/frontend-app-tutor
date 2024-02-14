@@ -77,9 +77,10 @@ export default function MainContent() {
       authenticatedHttpClient
     );
     const response = await getAuthenticatedHttpClient().get(
-      `http://local.edly.io/api/courses/v1/courses`
+      `http://local.edly.io/api/courses/v1/courses/`
     );
-    console.log("🚀 ~ response:", response);
+    if (response) console.log(response);
+    // console.log("🚀 ~ response:", response);
     // fetching from an authenticated API using user data
     //   const response = getAuthenticatedHttpClient().get(
     //     `http://local.edly.io/api/courses/v1/courses`

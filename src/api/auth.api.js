@@ -53,11 +53,11 @@ class AuthService {
       body: formData,
     })
       .then((response) => response.json())
-      .then((data) => console.log(data));
-    console.log("🚀 ~ AuthService ~ getTokens ~ data:", data);
-
-    const { access_token, refresh_token, expires_in } = data;
-    return { access_token, refresh_token, expires_in };
+      .then((data) => {
+        console.log(data);
+        const { access_token, refresh_token, expires_in } = data;
+        return { access_token, refresh_token, expires_in };
+      });
   }
 }
 export default AuthService;
