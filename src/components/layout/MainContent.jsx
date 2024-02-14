@@ -74,22 +74,11 @@ export default function MainContent() {
   useEffect(async () => {
     const authenticatedUser = await fetchAuthenticatedUser(); // validates and decodes JWT token
     console.log("🚀 ~ useEffect ~ authenticatedUser:", authenticatedUser);
-    const response = await getAuthenticatedHttpClient().get(
-      `http://local.edly.io/api/courses/v1/courses/`
-    );
-    if (response) console.log("this is response " + response);
-    console.log(response);
 
     await getAuthenticatedHttpClient()
       .get(`http://local.edly.io/api/courses/v1/courses/`)
       .then((response) => response.json())
       .then((data) => console.log(data));
-    // console.log("🚀 ~ response:", response);
-    // fetching from an authenticated API using user data
-    //   const response = getAuthenticatedHttpClient().get(
-    //     `http://local.edly.io/api/courses/v1/courses`
-    //   );
-    //   console.log("🚀 ~ data2:", response);
   }, []);
 
   const handleTableChange = (pagination) => {
@@ -112,7 +101,7 @@ export default function MainContent() {
   // 		if (index > -1) {
   // 			const item = newData[index];
   // 			newData.splice(index, 1, {
-//   console.log("🚀 ~ useEffect ~ response:", response);
+  //   console.log("🚀 ~ useEffect ~ response:", response);
   // 				...item,
   // 				...row,
   // 			});
