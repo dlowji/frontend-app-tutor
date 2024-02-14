@@ -20,7 +20,6 @@ export default function MainLayout() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const auth = useSelector((state) => state.auth);
-  const authService = getAuthService();
 
   return (
     <IntlProvider locale="en" messages={messages[3]["uk"]}>

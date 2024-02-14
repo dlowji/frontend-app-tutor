@@ -68,17 +68,19 @@ export default function MainContent() {
     fetch(initialPagination);
   }, [fetch]);
 
-  useEffect(() => {
-    console.log(ensureAuthenticatedUser());
-    console.log("getAuthService " + getAuthService());
-    console.log("getAuthenticatedUser " + getAuthenticatedUser());
-    console.log("fetchAuthenticatedUser " + fetchAuthenticatedUser());
-    console.log("hydrateAuthenticatedUser " + hydrateAuthenticatedUser());
+  useEffect(async () => {
+    const ensure = await ensureAuthenticatedUser();
+    console.log("🚀 ~ useEffect ~ ensure:", ensure);
+    const authService = getAuthService();
+    console.log("🚀 ~ useEffect ~ authService:", authService);
+    const hydrated = await hydrateAuthenticatedUser();
+    console.log("🚀 ~ useEffect ~ hydrated:", hydrated);
     const user1 = getAuthenticatedUser();
     console.log("🚀 ~ useEffect ~ user1:", user1);
-    const user2 = fetchAuthenticatedUser();
+    const user2 = await fetchAuthenticatedUser();
     console.log("🚀 ~ useEffect ~ user2:", user2);
-    console.log(getAuthenticatedHttpClient());
+    const httpClient = getAuthenticatedHttpClient();
+    console.log("🚀 ~ useEffect ~ httpClient:", httpClient);
     //   const response = getAuthenticatedHttpClient().get(
     //     `http://local.edly.io/api/courses/v1/courses`
     //   );
