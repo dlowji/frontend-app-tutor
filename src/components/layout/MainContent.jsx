@@ -69,18 +69,18 @@ export default function MainContent() {
   }, [fetch]);
 
   useEffect(async () => {
-    const ensure = await ensureAuthenticatedUser();
-    console.log("🚀 ~ useEffect ~ ensure:", ensure);
-    const authService = getAuthService();
-    console.log("🚀 ~ useEffect ~ authService:", authService);
-    const hydrated = await hydrateAuthenticatedUser();
-    console.log("🚀 ~ useEffect ~ hydrated:", hydrated);
-    const user1 = getAuthenticatedUser();
-    console.log("🚀 ~ useEffect ~ user1:", user1);
-    const user2 = await fetchAuthenticatedUser();
-    console.log("🚀 ~ useEffect ~ user2:", user2);
-    const httpClient = getAuthenticatedHttpClient();
-    console.log("🚀 ~ useEffect ~ httpClient:", httpClient);
+    const authenticatedUser = await fetchAuthenticatedUser(); // validates and decodes JWT token
+    console.log("🚀 ~ useEffect ~ authenticatedUser:", authenticatedUser);
+    const authenticatedHttpClient = getAuthenticatedHttpClient();
+    console.log(
+      "🚀 ~ useEffect ~ authenticatedHttpClient:",
+      authenticatedHttpClient
+    );
+    const response = await getAuthenticatedHttpClient().get(
+      `http://local.edly.io/api/courses/v1/courses`
+    );
+    console.log("🚀 ~ response:", response);
+    // fetching from an authenticated API using user data
     //   const response = getAuthenticatedHttpClient().get(
     //     `http://local.edly.io/api/courses/v1/courses`
     //   );
@@ -107,6 +107,10 @@ export default function MainContent() {
   // 		if (index > -1) {
   // 			const item = newData[index];
   // 			newData.splice(index, 1, {
+  console.log("🚀 ~ useEffect ~ response:", response);
+  console.log("🚀 ~ useEffect ~ response:", response);
+  console.log("🚀 ~ useEffect ~ response:", response);
+  console.log("🚀 ~ useEffect ~ response:", response);
   // 				...item,
   // 				...row,
   // 			});
