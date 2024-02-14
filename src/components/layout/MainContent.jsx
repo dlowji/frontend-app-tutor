@@ -77,7 +77,6 @@ export default function MainContent() {
 
     await getAuthenticatedHttpClient()
       .get(`http://local.edly.io/api/courses/v1/courses/`)
-      .then((response) => response.json())
       .then((data) => console.log(data));
   }, []);
 
