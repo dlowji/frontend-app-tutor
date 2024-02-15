@@ -75,8 +75,8 @@ export default function MainContent() {
     await getAuthenticatedHttpClient()
       .get(`http://local.edly.io/api/courses/v1/courses/`)
       .then((data) => console.log(data));
-    console.log(getAuthenticatedHttpClient());
-    const uris = getAuthenticatedHttpClient().getUris();
+    console.log([getAuthenticatedHttpClient()]);
+    const uris = getAuthenticatedHttpClient().getUri();
     console.log("🚀 ~ useEffect ~ uris:", uris);
   }, []);
 
