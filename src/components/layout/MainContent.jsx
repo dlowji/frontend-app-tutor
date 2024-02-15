@@ -20,6 +20,7 @@ const initialPagination = {
 };
 
 export default function MainContent() {
+  ensureAuthenticatedUser();
   const [form] = Form.useForm();
   const [tableData, setTableData] = useState({
     data: [],
@@ -27,49 +28,45 @@ export default function MainContent() {
     loading: false,
   });
   const { isMounted } = useMounted();
-  const auth = useSelector((state) => {
-    return state.auth;
-  });
-  console.log("🚀 ~ MainContent ~ auth:", auth);
-  const fetch = useCallback(
-    async (pagination) => {
-      setTableData((tableData) => ({ ...tableData, loading: true }));
-      if (auth?.accessToken) {
-        const response = await api.get("/courses/v1/courses/");
-        console.log("🚀 ~ api:", api.getUri());
-        const data = response.data;
-        console.log("🚀 ~ data:", data);
-        if (Array.isArray(data?.results)) {
-          if (isMounted.current) {
-            const results = data.results.map((item) => {
-              return {
-                key: item.id,
-                name: item.name,
-                start_display: item.start_display,
-                image: item.media.banner_image.uri_absolute,
-                hidden: item.hidden,
-              };
-            });
-            setTableData({
-              data: results,
-              pagination: {
-                ...pagination,
-                ...data?.pagination,
-              },
-              loading: false,
-            });
-          }
-        }
-      } else {
-        setTableData((tableData) => ({ ...tableData, loading: false }));
-      }
-    },
-    [isMounted, auth?.accessToken]
-  );
+  // const fetch = useCallback(
+  //   async (pagination) => {
+  //     setTableData((tableData) => ({ ...tableData, loading: true }));
+  //     if (auth?.accessToken) {
+  //       const response = await api.get("/courses/v1/courses/");
+  //       console.log("🚀 ~ api:", api.getUri());
+  //       const data = response.data;
+  //       console.log("🚀 ~ data:", data);
+  //       if (Array.isArray(data?.results)) {
+  //         if (isMounted.current) {
+  //           const results = data.results.map((item) => {
+  //             return {
+  //               key: item.id,
+  //               name: item.name,
+  //               start_display: item.start_display,
+  //               image: item.media.banner_image.uri_absolute,
+  //               hidden: item.hidden,
+  //             };
+  //           });
+  //           setTableData({
+  //             data: results,
+  //             pagination: {
+  //               ...pagination,
+  //               ...data?.pagination,
+  //             },
+  //             loading: false,
+  //           });
+  //         }
+  //       }
+  //     } else {
+  //       setTableData((tableData) => ({ ...tableData, loading: false }));
+  //     }
+  //   },
+  //   [isMounted, auth?.accessToken]
+  // );
 
-  useEffect(() => {
-    fetch(initialPagination);
-  }, [fetch]);
+  // useEffect(() => {
+  //   fetch(initialPagination);
+  // }, [fetch]);
 
   useEffect(async () => {
     const authenticatedUser = await fetchAuthenticatedUser(); // validates and decodes JWT token
@@ -80,9 +77,9 @@ export default function MainContent() {
       .then((data) => console.log(data));
   }, []);
 
-  const handleTableChange = (pagination) => {
-    fetch(pagination);
-  };
+  // const handleTableChange = (pagination) => {
+  //   fetch(pagination);
+  // };
 
   // const isEditing = (record) => record.key === editingKey;
 
@@ -117,11 +114,11 @@ export default function MainContent() {
   // const handleDeleteRow = (rowId) => {
   // 	setTableData({ ...tableData, data: tableData.data.filter((item) => item.key !== rowId) });
   // };
-  const handleShowMember = async (courseId) => {
-    const response = await api.get(`/courses/v1/courses/${courseId}/`);
-    const data = response.data?.overview ?? null;
-    console.log("🚀 ~ handleShowMember ~ data:", data);
-  };
+  // const handleShowMember = async (courseId) => {
+  //   const response = await api.get(`/courses/v1/courses/${courseId}/`);
+  //   const data = response.data?.overview ?? null;
+  //   console.log("🚀 ~ handleShowMember ~ data:", data);
+  // };
 
   const columns = [
     {
@@ -209,7 +206,7 @@ export default function MainContent() {
         pagination={{
           ...tableData.pagination,
         }}
-        onChange={handleTableChange}
+        // onChange={handleTableChange}
         loading={tableData.loading}
         scroll={{ x: 800 }}
       />
