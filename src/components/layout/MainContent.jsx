@@ -75,6 +75,9 @@ export default function MainContent() {
     await getAuthenticatedHttpClient()
       .get(`http://local.edly.io/api/courses/v1/courses/`)
       .then((data) => console.log(data));
+
+    const uris = getAuthenticatedUser().getUri();
+    console.log("🚀 ~ useEffect ~ uris:", uris);
   }, []);
 
   // const handleTableChange = (pagination) => {
