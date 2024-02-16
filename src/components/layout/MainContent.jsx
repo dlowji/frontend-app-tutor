@@ -28,6 +28,7 @@ export default function MainContent() {
     loading: false,
   });
   const { isMounted } = useMounted();
+  console.log("test");
   // const fetch = useCallback(
   //   async (pagination) => {
   //     setTableData((tableData) => ({ ...tableData, loading: true }));

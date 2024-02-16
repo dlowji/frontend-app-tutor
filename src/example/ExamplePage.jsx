@@ -1,4 +1,4 @@
-import { Container } from '@edx/paragon';
+import { Container } from "@edx/paragon";
 
 const ExamplePage = () => (
   <main>
